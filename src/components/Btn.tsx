@@ -12,17 +12,17 @@ function Btn(props: Props) {
   }
 
 
-// bad practice, maybe instead pass a prop that is the button display
+// bad practice, should instead pass a prop that is the button display
 
   switch (props.btnType) {
     case "start":
-      return <div><button onClick={props.onClick}>Start</button></div>;
+      return <div><button style={{margin: "30px"}} onClick={props.onClick}>Start</button></div>;
     case "stop":
-      return <div><button onClick={props.onClick}>Stop</button></div>;
+      return <div><button style={{margin: "30px"}} onClick={props.onClick}>Stop</button></div>;
     case "restart":
-      return <div><button onClick={props.onClick}>Restart</button></div>
+      return <div><button style={{margin: "30px"}} onClick={props.onClick}>Restart</button></div>
     case "update":
-      return <div><button onClick={props.onClick}>New Timer</button></div>
+      return <div><button style={{margin: "30px"}} onClick={props.onClick}>New Timer</button></div>
     default:
       return <div className=""><p>ERROR</p></div>;
   }
