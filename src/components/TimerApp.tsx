@@ -1,19 +1,19 @@
 import TimerDisplay from "./TimerDisplay";
 import TimerDurationInput from "./TimerDurationInput";
 import Btn from "./Btn";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 
 function TimerApp() {
 
     const [isActive, setIsActive] = useState(false);
-    const [duration, setDuration] = useState(1000);
-    const [secondsRemaining, setSecondsRemaining] = useState(0);
+    const [duration, setDuration] = useState(100);
+    const [tempDuration, setTempDuration] = useState(duration);
     
     useEffect(() => {
         setTimeout(() => {
             
-            if (isActive) {
+            if (isActive == true) {
             setDuration((duration) => duration - 1)
             console.log(duration);
             updateDisplay(duration);
@@ -28,7 +28,7 @@ function TimerApp() {
         const minutes = Math.floor((duration - (hours*3600)) / 60)
         const seconds = (60 *(duration - ((hours*3600) + (minutes*60) ))/ 60)
 
-        return (hours + " hours, " + minutes + " minutes, and " + seconds + "seconds.")
+        return ((duration > 0) ? (hours + " hours, " + minutes + " minutes, and " + seconds + "seconds.") : "Time up!")
 
         // return duration
     }
@@ -40,28 +40,39 @@ function TimerApp() {
         setIsActive(!isActive);
     }
 
-    const timerDecrement = (value: number) => {
-        setSecondsRemaining(value - 1);
+
+    const updateFromInput = (event) => {
+      setTempDuration(event.target.value);
     }
 
 
+    const setTime = () => {
+        setDuration(tempDuration);
+    }
+
+    const inputRef = useRef();
     
+    /*
+    value={inputValue} 
+        onChange={(e) => setInputValue(e.target.value)
+
+        */
 
 
   return (
     <div>
       
-      <TimerDurationInput updateTimer={() => setDuration(6)}/>
-      <Btn btnType="update" activeState={''} />
+      <TimerDurationInput onChange={updateFromInput} />
+      <Btn btnType="update" onClick={setTime} />
       <br />
       <br />
 
       <TimerDisplay displayText={updateDisplay(duration)}/>
       {/* conditional formatting to render start or stop button depending if timer is (in)active */
-        isActive ? <Btn btnType="stop" activeState={updateState} /> : <Btn btnType="start" activeState={updateState} />
+        isActive ? <Btn btnType="stop" onClick={updateState} /> : <Btn btnType="start" onClick={updateState} />
       }
 
-      <Btn btnType='restart' activeState={isActive}></Btn>
+      <Btn btnType='restart' onClick={setTime}></Btn>
     </div>
   );
 }

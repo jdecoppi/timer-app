@@ -1,13 +1,13 @@
 interface Props {
   btnType: string; //start, stop, or restart
-  activeState: any;
+  onClick: any;
   
 }
 
 function Btn(props: Props) {
 
   const debugInfo = () => {
-    console.log(props.activeState);
+    console.log(props.onClick);
     
   }
 
@@ -15,13 +15,13 @@ function Btn(props: Props) {
 
   switch (props.btnType) {
     case "start":
-      return <div><button onClick={props.activeState}>Start</button></div>;
+      return <div><button onClick={props.onClick}>Start</button></div>;
     case "stop":
-      return <div><button onClick={props.activeState}>Stop</button></div>;
+      return <div><button onClick={props.onClick}>Stop</button></div>;
     case "restart":
-      return <div><button onClick={debugInfo}>Restart</button></div>
+      return <div><button onClick={props.onClick}>Restart</button></div>
     case "update":
-      return <div><button onClick={debugInfo}>Update</button></div>
+      return <div><button onClick={props.onClick}>Update</button></div>
     default:
       return <div className=""><p>ERROR</p></div>;
   }
