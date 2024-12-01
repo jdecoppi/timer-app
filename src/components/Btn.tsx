@@ -12,6 +12,7 @@ function Btn(props: Props) {
   }
 
 
+// bad practice, maybe instead pass a prop that is the button display
 
   switch (props.btnType) {
     case "start":
@@ -21,7 +22,7 @@ function Btn(props: Props) {
     case "restart":
       return <div><button onClick={props.onClick}>Restart</button></div>
     case "update":
-      return <div><button onClick={props.onClick}>Update</button></div>
+      return <div><button onClick={props.onClick}>New Timer</button></div>
     default:
       return <div className=""><p>ERROR</p></div>;
   }

@@ -9,7 +9,7 @@ function TimerDurationInput(props: Props) {
 
     return (
         <div>
-        <input type="text" placeholder="Enter a time in seconds" onChange={props.onChange} />
+        <input type="number" placeholder="Enter a time in seconds" onChange={props.onChange} />
        
      </div>
     )
