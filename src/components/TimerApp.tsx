@@ -9,7 +9,7 @@ function TimerApp() {
   const [tempDuration, setTempDuration] = useState(duration);
 
   useEffect(() => {
-    let intervalId: number | undefined;
+    let intervalId: NodeJS.Timeout | undefined;
 
     if (isActive) {
       intervalId = setInterval(() => {
@@ -31,13 +31,14 @@ function TimerApp() {
     };
   }, [isActive]);
 
+
   const updateDisplay = (duration: number) => {
     const hours = Math.floor(duration / 3600);
     const minutes = Math.floor((duration - hours * 3600) / 60);
     const seconds = (60 * (duration - (hours * 3600 + minutes * 60))) / 60;
 
     return duration > 0
-      ? hours + " hours, " + minutes + " minutes, and " + seconds + " seconds remaining."
+      ? hours + " hours, " + minutes + " minutes, and " + seconds + " seconds."
       : "Time up!";
 
     // return duration

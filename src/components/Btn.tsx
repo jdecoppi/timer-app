@@ -6,10 +6,10 @@ interface Props {
 
 function Btn(props: Props) {
 
-  const debugInfo = () => {
-    console.log(props.onClick);
+  // const debugInfo = () => {
+  //   console.log(props.onClick);
     
-  }
+  // }
 
 
 // bad practice, should instead pass a prop that is the button display
